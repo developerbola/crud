@@ -111,6 +111,7 @@ const index = () => {
               id="outlined-basic"
               sx={{ width: "70%" }}
               label="Email"
+              type="email"
               variant="outlined"
               onChange={(e) => setEmail(e.target.value)}
             />

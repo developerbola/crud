@@ -3,6 +3,7 @@ import Users from "../Users";
 import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import req from "../../api/api";
+
 const Index = () => {
   const [users, setUsers] = useState([]);
 
@@ -27,7 +28,6 @@ const Index = () => {
     setFilterBy(filterBy);
     setFilteredData(filteredUsers);
   };
-
 
   return (
     <>
