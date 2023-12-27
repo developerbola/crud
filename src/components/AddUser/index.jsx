@@ -40,12 +40,8 @@ const index = () => {
   };
 
   const sendPost = () => {
-    if (name && username && email && address && contact && role) {
-      req.sendPost(params);
-      navigate("/");
-    } else {
-      alert("You didn't fill all inputs!");
-    }
+    req.sendPost(params);
+    navigate("/");
 
     setName("");
     setUsername("");
@@ -95,6 +91,7 @@ const index = () => {
             }}
           >
             <TextField
+              required
               id="outlined-basic"
               sx={{ width: "70%" }}
               label="Name"
@@ -102,6 +99,7 @@ const index = () => {
               onChange={(e) => setName(e.target.value)}
             />
             <TextField
+              required
               id="outlined-basic"
               sx={{ width: "70%" }}
               label="Username"
@@ -109,6 +107,7 @@ const index = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
+              required
               id="outlined-basic"
               sx={{ width: "70%" }}
               label="Email"
@@ -116,6 +115,7 @@ const index = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
+              required
               id="outlined-basic"
               sx={{ width: "70%" }}
               label="Address"
@@ -147,6 +147,7 @@ const index = () => {
               </Select>
             </FormControl>
             <TextField
+              required
               id="outlined-basic"
               sx={{ width: "70%" }}
               label="Contact"

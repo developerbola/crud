@@ -71,7 +71,7 @@ const index = ({ filterUsers }) => {
           </Link>
           <TextField
             id="outlined-basic"
-            label="Search"
+            label="Search by Name"
             variant="outlined"
             sx={{ width: "55%" }}
           />
