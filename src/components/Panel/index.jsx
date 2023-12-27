@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const index = ({ filterUsers }) => {
+const index = ({ filterUsers, setSearchData }) => {
   const [filterRole, setFilterRole] = useState("");
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ const index = ({ filterUsers }) => {
 
   return (
     <>
-      <FormControl
+      <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
@@ -30,53 +30,72 @@ const index = ({ filterUsers }) => {
           p: "30px",
         }}
       >
-        <InputLabel sx={{ ml: "29px", mt: "30px" }}>Filter</InputLabel>
-        <Select
-          sx={{ width: "20%" }}
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={filterRole}
-          label="Role"
-          onChange={handleChange}
-        >
-          {roles.map((role) => {
-            return (
-              <MenuItem value={role} key={role}>
-                {role}
-              </MenuItem>
-            );
-          })}
-        </Select>
-
         <Box
-          width={"40%"}
+          width={"100%"}
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-around",
           }}
         >
-          <Link to={"/add"}>
-            <Button
-              variant="outlined"
-              sx={{
-                color: "#fff",
-                borderRadius: "25px",
-                p: "12px 15px",
-                fontSize: "14px",
-              }}
-            >
-              Create New
-            </Button>
-          </Link>
           <TextField
             id="outlined-basic"
             label="Search by Name"
             variant="outlined"
-            sx={{ width: "55%" }}
+            sx={{ width: "30%" }}
+            onChange={(e) => setSearchData(e.target.value)}
           />
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              gap: "15px",
+            }}
+          >
+            <Link to={"/add"}>
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#fff",
+                  borderRadius: "25px",
+                  p: "12px 15px",
+                  fontSize: "14px",
+                }}
+              >
+                Create New
+              </Button>
+            </Link>
+            <FormControl
+              sx={{
+                width: "23%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <InputLabel>Filter</InputLabel>
+              <Select
+                sx={{ width: "100%" }}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={filterRole}
+                label="Role"
+                onChange={handleChange}
+              >
+                {roles.map((role) => {
+                  return (
+                    <MenuItem value={role} key={role}>
+                      {role}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Box>
         </Box>
-      </FormControl>
+      </Box>
     </>
   );
 };

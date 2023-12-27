@@ -22,12 +22,26 @@ const Index = () => {
 
   const [filterBy, setFilterBy] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [searchData, setSearchData] = useState("");
+
+  useEffect(() => {
+    console.log(searchData);
+  }, [searchData]);
 
   const filterUsers = (filterBy) => {
     const filteredUsers = users.filter((user) => user.roleName === filterBy);
     setFilterBy(filterBy);
     setFilteredData(filteredUsers);
   };
+
+  const searchUser = (e) => {
+    // const searchUsers = users.filter((user) => user.);
+    console.log(searchUsers);
+  };
+
+  useEffect(() => {
+    // searchUser(searchData);
+  }, []);
 
   return (
     <>
@@ -44,7 +58,7 @@ const Index = () => {
           overflow: "hidden",
         }}
       >
-        <Panel filterUsers={filterUsers} />
+        <Panel filterUsers={filterUsers} setSearchData={setSearchData} />
         <Users filteredData={filteredData} filterBy={filterBy} />
       </Box>
     </>
