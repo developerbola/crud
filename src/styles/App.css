@@ -1,0 +1,14 @@
+main {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: url(https://i.pinimg.com/564x/fa/26/40/fa264054b6a53d1c84b80cd982d40d80.jpg);
+  background-size: cover;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+body{
+  overflow: hidden;
+}
