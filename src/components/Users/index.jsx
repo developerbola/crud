@@ -13,7 +13,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import req from "../../api/api";
 import { useState, useEffect } from "react";
 
-const Index = ({ filteredData, filterBy }) => {
+import { useNavigate } from "react-router-dom";
+
+const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
   const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
@@ -28,6 +30,8 @@ const Index = ({ filteredData, filterBy }) => {
   useEffect(() => {
     getUsers();
   }, [users]);
+
+  const navigate = useNavigate();
 
   const deletePost = (id) => {
     req.deletePost(id);
@@ -77,6 +81,51 @@ const Index = ({ filteredData, filterBy }) => {
                           "&:last-child td, &:last-child th": { border: 0 },
                           cursor: "pointer",
                         }}
+                        onClick={() => navigate(`/users/${users.id}`)}
+                      >
+                        <TableCell>{users.name}</TableCell>
+                        <TableCell>{users.username}</TableCell>
+                        <TableCell>{users.email}</TableCell>
+                        <TableCell>{users.contact}</TableCell>
+                        <TableCell>{users.address}</TableCell>
+                        <TableCell>
+                          <span
+                            style={{
+                              background: roleColor(users.roleName),
+                              textAlign: "center",
+                              padding: "10px 12px",
+                              borderRadius: "20px",
+                            }}
+                          >
+                            {users.roleName}
+                          </span>
+                        </TableCell>
+                        <TableCell sx={{ width: "12%" }}>
+                          <Button>
+                            <EditIcon />
+                          </Button>
+                          <Button
+                            sx={{ color: "red" }}
+                            onClick={() => deletePost(users.id)}
+                          >
+                            <DeleteOutlineIcon />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  );
+                })
+              : searchData
+              ? searchedData.map((users) => {
+                  return (
+                    <TableBody key={users.id}>
+                      <TableRow
+                        hover
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                          cursor: "pointer",
+                        }}
+                        onClick={() => navigate(`/users/${users.id}`)}
                       >
                         <TableCell>{users.name}</TableCell>
                         <TableCell>{users.username}</TableCell>
@@ -119,6 +168,7 @@ const Index = ({ filteredData, filterBy }) => {
                           "&:last-child td, &:last-child th": { border: 0 },
                           cursor: "pointer",
                         }}
+                        onClick={() => navigate(`/users/${users.id}`)}
                       >
                         <TableCell>{users.name}</TableCell>
                         <TableCell>{users.username}</TableCell>

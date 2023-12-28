@@ -22,11 +22,6 @@ const Index = () => {
 
   const [filterBy, setFilterBy] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [searchData, setSearchData] = useState("");
-
-  useEffect(() => {
-    console.log(searchData);
-  }, [searchData]);
 
   const filterUsers = (filterBy) => {
     const filteredUsers = users.filter((user) => user.roleName === filterBy);
@@ -34,14 +29,16 @@ const Index = () => {
     setFilteredData(filteredUsers);
   };
 
+  const [searchData, setSearchData] = useState("");
+  const [searchedData, setSearchedData] = useState([]);
   const searchUser = (e) => {
-    // const searchUsers = users.filter((user) => user.);
-    console.log(searchUsers);
+    let searchUsers = users.filter((user) => user.name.includes(e))
+    setSearchedData(searchUsers);
   };
 
   useEffect(() => {
-    // searchUser(searchData);
-  }, []);
+    searchUser(searchData);
+  }, [searchData]);
 
   return (
     <>
@@ -58,8 +55,17 @@ const Index = () => {
           overflow: "hidden",
         }}
       >
-        <Panel filterUsers={filterUsers} setSearchData={setSearchData} />
-        <Users filteredData={filteredData} filterBy={filterBy} />
+        <Panel
+          filterUsers={filterUsers}
+          setSearchData={setSearchData}
+          searchData={searchData}
+        />
+        <Users
+          filteredData={filteredData}
+          filterBy={filterBy}
+          searchData={searchData}
+          searchedData={searchedData}
+        />
       </Box>
     </>
   );
