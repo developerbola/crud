@@ -29,7 +29,7 @@ const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
 
   useEffect(() => {
     getUsers();
-  }, [users]);
+  }, []);
 
   const navigate = useNavigate();
 

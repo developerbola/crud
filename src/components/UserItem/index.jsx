@@ -99,7 +99,7 @@ const index = () => {
             gap: "20px",
             marginBottom: "15px",
           }}
-          onSubmit={() => sendPost()}
+          onSubmit={() => updatePost(id)}
         >
           <Box
             sx={{
@@ -173,7 +173,7 @@ const index = () => {
               required
               id="outlined-basic"
               sx={{ width: "70%" }}
-              label="Contact"
+              label={`Contact: ${userData.contact}`}
               type="number"
               variant="outlined"
               onChange={(e) => setContact(e.target.value)}
@@ -211,7 +211,7 @@ const index = () => {
               }}
               type="submit"
               onSubmit={() => {
-                sendPost();
+                updatePost(id);
               }}
             >
               Update
