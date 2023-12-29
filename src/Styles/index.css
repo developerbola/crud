@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff90;
+  border-radius: 20px;
+  border: 6px solid #000;
+  border-right: 7px solid #000;
+  border-top: 10px solid #000;
+}
+
+*::selection {
+  background: #00ff2f60;
+}
