@@ -14,17 +14,17 @@ import req from "../../api/api";
 import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
   const [users, setUsers] = useState([]);
 
+  const baseUrl = "https://655ef5e2879575426b443c29.mockapi.io/api/users";
+
   const getUsers = async () => {
-    try {
-      let res = await req.allUsers();
-      return setUsers(res);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
+    const res = await axios.get(baseUrl);
+    const data = res.data;
+    setUsers(data)
   };
 
   useEffect(() => {
@@ -71,11 +71,12 @@ const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
                 <TableCell>Role</TableCell>
               </TableRow>
             </TableHead>
-            {filterBy
-              ? filteredData.map((users) => {
-                  return (
-                    <TableBody key={users.id}>
+            <TableBody>
+              {filterBy
+                ? filteredData.map((users) => {
+                    return (
                       <TableRow
+                        key={users.id}
                         hover
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
@@ -112,14 +113,13 @@ const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
                           </Button>
                         </TableCell>
                       </TableRow>
-                    </TableBody>
-                  );
-                })
-              : searchData
-              ? searchedData.map((users) => {
-                  return (
-                    <TableBody key={users.id}>
+                    );
+                  })
+                : searchData
+                ? searchedData.map((users) => {
+                    return (
                       <TableRow
+                        key={users.id}
                         hover
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
@@ -156,17 +156,16 @@ const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
                           </Button>
                         </TableCell>
                       </TableRow>
-                    </TableBody>
-                  );
-                })
-              : users.map((users) => {
-                  return (
-                    <TableBody key={users.id}>
+                    );
+                  })
+                : users.map((users) => {
+                    return (
                       <TableRow
+                        key={users.id}
                         hover
                         sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
                           cursor: "pointer",
+                          border: "none",
                         }}
                         onClick={() => navigate(`/users/${users.id}`)}
                       >
@@ -199,9 +198,9 @@ const Index = ({ filteredData, filterBy, searchedData, searchData }) => {
                           </Button>
                         </TableCell>
                       </TableRow>
-                    </TableBody>
-                  );
-                })}
+                    );
+                  })}
+            </TableBody>
           </Table>
         </TableContainer>
       </Box>

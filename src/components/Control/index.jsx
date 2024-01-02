@@ -2,23 +2,21 @@ import Panel from "../Panel";
 import Users from "../Users";
 import { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import req from "../../api/api";
-
+import axios from "axios";
 const Index = () => {
   const [users, setUsers] = useState([]);
 
+  const baseUrl = "https://655ef5e2879575426b443c29.mockapi.io/api/users";
+
   const getUsers = async () => {
-    try {
-      let res = await req.allUsers();
-      setUsers(res);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
+    const res = await axios.get(baseUrl);
+    const data = res.data;
+    setUsers(data)
   };
 
   useEffect(() => {
     getUsers();
-  }, [users]);
+  }, []);
 
   const [filterBy, setFilterBy] = useState("");
   const [filteredData, setFilteredData] = useState([]);
